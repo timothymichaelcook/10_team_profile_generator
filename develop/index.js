@@ -8,6 +8,7 @@ const intern = require('./lib/intern');
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
+const manager = require('./lib/manager');
 const OUTPUT_DIR = path.resolve(__dirname, 'dist')
 const outputPath = path.join(OUTPUT_DIR, 'team.html')
 
@@ -59,27 +60,93 @@ function addManager() {
       name: 'managerName',
       validate: val => val.length > 2,
     },
+    {
+      type: 'input',
+      message: 'Please enter the manager\'s id.',
+      name: 'managerId',
+      validate: function(val) {
+        if (isNaN(val)) {
+          return 'Please enter a number.';
+        } else if (teamMembers.some(teamMember => (teamMember.id === val))) {
+          return 'This ID has already been used, please enter a new ID.'
+        }
+        return true;
+      }
+    },
+    {
+      type: 'input',
+      message: 'Please enter the manager\'s email.',
+      name: 'managerEmail',
+      validate: val => val.length > 2,
+    },
+    {
+      type: 'input',
+      message: 'Please enter the manager\'s office number.',
+      name: 'officeNumber',
+      validate: function(val) {
+        if (isNaN(val)) {
+          return 'Please enter a number.';
+        }
+        return true;
+      }
+    },
+  ])
 
-
-
-
-
-
-
-
-
-    
-  ]).then(function (response) {
-    if (response.addEmployee === 'engineer') {
-      addEngineer().then(addEmployee);
-    } else if (response.addEmployee === 'intern') {
-      addIntern().then(addEmployee);
-    } else {
-      generateHTML();
-    }
+  .then(function (response) {
+    const manager = new manager(response.managerName, response.managerId, response.manager.Email, response.officeNumber);
+    teamMembers.push(manager);
   });
 }
 
+//Call init function
+init();
+
+function addEngineer() {
+  return inquirer
+  .prompt([
+    {
+      type: 'input',
+      message: 'Please enter the engineer\'s name.',
+      name: 'engineerName',
+      validate: val => val.length > 2,
+    },
+    {
+      type: 'input',
+      message: 'Please enter the engineer\'s id.',
+      name: 'engineerId',
+      validate: function(val) {
+        if (isNaN(val)) {
+          return 'Please enter a number.';
+        } else if (teamMembers.some(teamMember => (teamMember.id === val))) {
+          return 'This ID has already been used, please enter a new ID.'
+        }
+        return true;
+      }
+    },
+    {
+      type: 'input',
+      message: 'Please enter the manager\'s email.',
+      name: 'managerEmail',
+      validate: val => val.length > 2,
+    },
+    {
+      type: 'input',
+      message: 'Please enter the manager\'s office number.',
+      name: 'officeNumber',
+      validate: function(val) {
+        if (isNaN(val)) {
+          return 'Please enter a number.';
+        }
+        return true;
+      }
+    },
+  ])
+
+  .then(function (response) {
+    const manager = new manager(response.managerName, response.managerId, response.manager.Email, response.officeNumber);
+    teamMembers.push(manager);
+  });
+}
 
 
 
