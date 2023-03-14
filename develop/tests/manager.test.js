@@ -13,7 +13,7 @@ test('The getRole function returns "manager"?', () => {
   expect(e.getRole()).toBe(testValue);
 });
 
-test('Can get office number via getOffice function"?', () => {
+test('Can you get office number via getOffice function"?', () => {
   const testValue = 100;
   const e = new manager('test', 1, 'testEmail.test.com', testValue);
   expect(e.getOfficeNumber()).toBe(testValue);
