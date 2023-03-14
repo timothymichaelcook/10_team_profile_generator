@@ -93,7 +93,7 @@ function addManager() {
   ])
 
   .then(function (response) {
-    const manager = new manager(response.managerName, response.managerId, response.manager.Email, response.officeNumber);
+    const manager = new manager(response.managerName, response.managerId, response.managerEmail, response.officeNumber);
     teamMembers.push(manager);
   });
 }
@@ -125,26 +125,64 @@ function addEngineer() {
     },
     {
       type: 'input',
-      message: 'Please enter the manager\'s email.',
-      name: 'managerEmail',
+      message: 'Please enter the engineer\'s email.',
+      name: 'engineerEmail',
       validate: val => val.length > 2,
     },
     {
       type: 'input',
-      message: 'Please enter the manager\'s office number.',
-      name: 'officeNumber',
-      validate: function(val) {
-        if (isNaN(val)) {
-          return 'Please enter a number.';
-        }
-        return true;
-      }
+      message: 'Please enter the engineer\'s GitHub username.',
+      name: 'engineerGitHub',
+      validate: val => val.length > 2,
     },
   ])
 
   .then(function (response) {
-    const manager = new manager(response.managerName, response.managerId, response.manager.Email, response.officeNumber);
-    teamMembers.push(manager);
+    const engineer = new engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
+    teamMembers.push(engineer);
+  });
+}
+
+
+function addEngineer() {
+  return inquirer
+  .prompt([
+    {
+      type: 'input',
+      message: 'Please enter the engineer\'s name.',
+      name: 'engineerName',
+      validate: val => val.length > 2,
+    },
+    {
+      type: 'input',
+      message: 'Please enter the engineer\'s id.',
+      name: 'engineerId',
+      validate: function(val) {
+        if (isNaN(val)) {
+          return 'Please enter a number.';
+        } else if (teamMembers.some(teamMember => (teamMember.id === val))) {
+          return 'This ID has already been used, please enter a new ID.'
+        }
+        return true;
+      }
+    },
+    {
+      type: 'input',
+      message: 'Please enter the engineer\'s email.',
+      name: 'engineerEmail',
+      validate: val => val.length > 2,
+    },
+    {
+      type: 'input',
+      message: 'Please enter the engineer\'s GitHub username.',
+      name: 'engineerGitHub',
+      validate: val => val.length > 2,
+    },
+  ])
+
+  .then(function (response) {
+    const engineer = new engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
+    teamMembers.push(engineer);
   });
 }
 
