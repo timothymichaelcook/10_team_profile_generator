@@ -13,6 +13,23 @@ const outputPath = path.join(OUTPUT_DIR, 'team.html')
 
 const teamMembers = [];
 
+function init() {
+  addManager().then(addEmployee);
+}
+
+function generateHTML() {
+  let html = render(teamMembers);
+
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR);
+  }
+  fs.writeFile(outputPath, html, function(err) {
+    if (err) {
+      return console.log(err);
+    }
+  });
+}
+
 
 
 
