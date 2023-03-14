@@ -30,7 +30,55 @@ function generateHTML() {
   });
 }
 
+function addEmployee() {
+  return inquirer
+  .prompt([
+    {
+      type: 'list',
+      message: 'What team would you like to add this employee to?',
+      name: 'addEmployee',
+      choices: []
+    }
+  ]).then(function (response) {
+    if (response.addEmployee === 'engineer') {
+      addEngineer().then(addEmployee);
+    } else if (response.addEmployee === 'intern') {
+      addIntern().then(addEmployee);
+    } else {
+      generateHTML();
+    }
+  });
+}
 
+function addManager() {
+  return inquirer
+  .prompt([
+    {
+      type: 'input',
+      message: 'Please enter the manager\'s name.',
+      name: 'managerName',
+      validate: val => val.length > 2,
+    },
+
+
+
+
+
+
+
+
+
+    
+  ]).then(function (response) {
+    if (response.addEmployee === 'engineer') {
+      addEngineer().then(addEmployee);
+    } else if (response.addEmployee === 'intern') {
+      addIntern().then(addEmployee);
+    } else {
+      generateHTML();
+    }
+  });
+}
 
 
 
