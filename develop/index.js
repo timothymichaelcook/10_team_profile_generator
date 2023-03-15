@@ -11,8 +11,12 @@ const fs = require('fs');
 const manager = require('./lib/manager');
 const OUTPUT_DIR = path.resolve(__dirname, 'dist')
 const outputPath = path.join(OUTPUT_DIR, 'team.html')
-
 const teamMembers = [];
+
+
+/*
+FUNCTIONS SECTION
+*/
 
 function init() {
   addManager().then(addEmployee);
@@ -144,19 +148,19 @@ function addEngineer() {
 }
 
 
-function addEngineer() {
+function addIntern() {
   return inquirer
   .prompt([
     {
       type: 'input',
-      message: 'Please enter the engineer\'s name.',
-      name: 'engineerName',
+      message: 'Please enter the intern\'s name.',
+      name: 'internName',
       validate: val => val.length > 2,
     },
     {
       type: 'input',
-      message: 'Please enter the engineer\'s id.',
-      name: 'engineerId',
+      message: 'Please enter the intern\'s id.',
+      name: 'internId',
       validate: function(val) {
         if (isNaN(val)) {
           return 'Please enter a number.';
@@ -168,28 +172,24 @@ function addEngineer() {
     },
     {
       type: 'input',
-      message: 'Please enter the engineer\'s email.',
-      name: 'engineerEmail',
+      message: 'Please enter the intern\'s email.',
+      name: 'internEmail',
       validate: val => val.length > 2,
     },
     {
       type: 'input',
-      message: 'Please enter the engineer\'s GitHub username.',
-      name: 'engineerGitHub',
+      message: 'Please enter the intern\'s school.',
+      name: 'internSchool',
       validate: val => val.length > 2,
     },
   ])
 
   .then(function (response) {
-    const engineer = new engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
-    teamMembers.push(engineer);
+    const intern = new intern(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
+    teamMembers.push(intern);
   });
 }
 
 
 
 
-
-/*
-FUNCTIONS SECTION
-*/
