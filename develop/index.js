@@ -2,17 +2,17 @@
 GLOBAL VARIABLES SECTION
 */
 
-const manager = require('./lib/Manager');
-const engineer = require('./lib/Engineer');
-const intern = require('./lib/Intern');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
-const manager = require('./lib/Manager');
-const OUTPUT_DIR = path.resolve(__dirname, 'dist')
-const outputPath = path.join(OUTPUT_DIR, 'team.html')
+const OUTPUT_DIR = path.resolve(__dirname, 'dist');
+const outputPath = path.join(OUTPUT_DIR, 'team.html');
+const render = require('./lib/htmlRenderer');
+const Choices = require('inquirer/lib/objects/choices')
 const teamMembers = [];
-
 
 /*
 FUNCTIONS SECTION
@@ -42,12 +42,12 @@ function addEmployee() {
       type: 'list',
       message: 'What team would you like to add this employee to?',
       name: 'addEmployee',
-      choices: []
+      choices: ['Engineer', 'Inter', 'I don\'t want to add anymore members.']
     }
   ]).then(function (response) {
-    if (response.addEmployee === 'engineer') {
+    if (response.addEmployee === 'Engineer') {
       addEngineer().then(addEmployee);
-    } else if (response.addEmployee === 'intern') {
+    } else if (response.addEmployee === 'Intern') {
       addIntern().then(addEmployee);
     } else {
       generateHTML();
