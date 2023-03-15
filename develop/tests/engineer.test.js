@@ -1,4 +1,4 @@
-const engineer = require('../lib/engineer.js');
+const engineer = require('../lib/Engineer.js');
 
 test('Can set GitHub value via argument passed?', () => {
   const testValue = 'GitHubUsername';

@@ -1,4 +1,4 @@
-class employee {
+class Employee {
   constructor(name, id, email) {
     this.name = name;
     this.id = id;
@@ -7,19 +7,18 @@ class employee {
   getName() {
     console.log(this.name);
     return this.name;
-
   }
   getId() {
     console.log(this.id)
-    return this.name;
+    return this.id;
   }
   getEmail() {
     console.log(this.email);
     return this.email;
   }
   getRole() {
-    return 'employee';
+    return 'Employee';
   }
 }
 
-module.exports = employee;
+module.exports = Employee;

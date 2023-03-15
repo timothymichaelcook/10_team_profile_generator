@@ -1,4 +1,4 @@
-const intern = require('../lib/intern.js');
+const intern = require('../lib/Intern.js');
 
 test('Can set school value via argument passed?', () => {
   const testValue = 'UoR';

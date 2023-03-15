@@ -1,5 +1,5 @@
-const manager = require('../lib/manager.js');
-const employee = require('../lib/employee.js');
+const manager = require('../lib/Manager.js');
+const employee = require('../lib/Employee.js');
 
 test('Can set office number value via argument passed?', () => {
   const testValue = 100;
