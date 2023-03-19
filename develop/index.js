@@ -1,3 +1,4 @@
+// Declare global variables
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
@@ -11,19 +12,19 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
 const Choices = require("inquirer/lib/objects/choices");
 
+// Declare teamMembers variable, assign to empty array
 const teamMembers = [];
 
-// initial by asking addManager questions 
+// Declare init function, calls addManager function after call addEmployee functions with then method
 function init() {
     addManager().then(addEmployee);;
 }
 
-// generate HTML by using render functions
+// Declare generateHTML Function, assign html variable to render function, passing in teamMembers argument
 function generateHTML() {
     let html = render(teamMembers);
-    // console.log(html);
 
-    // check if output directory exist, if not, create a new directory
+    // Check if src directory exist, if not, create src directory
     if (!fs.existsSync(OUTPUT_DIR)){
         fs.mkdirSync(OUTPUT_DIR);
     }
@@ -34,7 +35,7 @@ function generateHTML() {
       });
 }
 
-// adking if the user wants to add more team members
+// Console prompt asking if user would like to add employee
 function addEmployee() {
     return inquirer
     .prompt([
@@ -56,7 +57,7 @@ function addEmployee() {
 
 }
 
-// create functions for manager 
+// Declare addManager function, prompt method used to gather user inputs
 function addManager() {
     return inquirer
         .prompt([
@@ -104,14 +105,13 @@ function addManager() {
         .then(function (response) {
             const manager = new Manager(response.managerName, response.managerId, response.managerEmail, response.officeNumber);
             teamMembers.push(manager);
-            // console.log(teamMembers);
         });
 
 }
 
 init();
 
-// create functions for engineer 
+// Declare addEngineer function, use inquirer for prompting user for input
 function addEngineer() {
     return inquirer
         .prompt([
@@ -155,12 +155,11 @@ function addEngineer() {
         .then(function (response) {
             const engineer = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
             teamMembers.push(engineer);
-            // console.log(teamMembers);
         });
 
 }
 
-// create functions for intern 
+// // Declare addIntern function, use inquirer for prompting user for inputs about intern
 function addIntern() {
     return inquirer
         .prompt([
@@ -204,36 +203,7 @@ function addIntern() {
         .then(function (response) {
             const intern = new Intern(response.internName, response.internId, response.internEmail, response.internSchool);
             teamMembers.push(intern);
-            // console.log(teamMembers);
         });
 
 }
-
-// create function for employee to wrap 
-
-// valiate function to ensure ID is unique
-
-
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
 
