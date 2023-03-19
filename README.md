@@ -3,9 +3,9 @@
 Project Repo: [Github-repo](https://github.com/timothymichaelcook/10_team_profile_generator)
 
 
-## Description (REDO)
+## Description
 
-The focus of this project was to create an application that displayed a timed quiz, with multiple choice and T/F questions are displayed as either correct or incorrect as soon as the click event occurred on the button. The quiz will generate as many questions as possible within the time frame as repetition is important when learning. Users can save their information in a high scores table that will populate every time a score is saved. This table also has the ability to be cleared.
+The focus of this project was to create an application in that runs in the terminal, gathers user data about employees based on their job title. Every employee will be asked to input their name, id and email. Specific employees will be asked questions based on their job title. For examples, engineers will be asked to provide their GitHub username while interns will be asked what school they attended. The output file will display the user input in one CSS container and multiple CSS cards.
 
 ## User Story
 
@@ -15,14 +15,17 @@ The focus of this project was to create an application that displayed a timed qu
 - SO THAT I have quick access to their emails and GitHub profiles
 ```
 
-## Installation (REDO)
+## Installation
 
-N/A
+- Inquirer package (for user prompts)
+- Jest package (for running tests)
+- npm i
+- npm run test
+- node index.js
 
 ## Usage
 
-Users click the "Start Quiz" button which will redirect to a new page with a running timer and a container for displayed questions. Users click their answer or best guess which is then returned with a result. Users finally have the ability to save their scores at the end of every quiz as well as clearing all results as well.
-
+Users needs to be in the root folder of the project and 'npm i' or 'npm install' to install necessary dependencies. Once installed, users will need to run 'node index.js' to start the application in the terminal window. Once the user inputs the required fields, a prompt will ask if you would like to add another employee. If no, a file named team.html will be created in the dist directory. Open the html file in a browser to view the output file.
 
 ## Credits
 
@@ -32,9 +35,10 @@ University of Richmond Coding Bootcamp
 
 MIT License
 
-## Screenshots
+## Screenshots/Videos
 
-![Project Screenshot](./screenshots/screenshot_1.png)
+![Project Walkthrough](./assets/challenge_10_walkthrough.gif)
+![Project Tests](./assets/challenge_10_test.gif)
 
 ## Contact
 Timothy Cook - timothy.michael.cook@gmail.com

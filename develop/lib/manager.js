@@ -8,7 +8,6 @@ class Manager extends Employee {
   }
 
   getOfficeNumber() {
-    console.log(this.officeNumber);
     return this.officeNumber;
   }
 
