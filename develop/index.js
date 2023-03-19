@@ -40,9 +40,9 @@ function addEmployee() {
   .prompt([
     {
       type: 'list',
-      message: 'What team would you like to add this employee to?',
+      message: 'Would you like to add another member to the team?',
       name: 'addEmployee',
-      choices: ['Engineer', 'Inter', 'I don\'t want to add anymore members.']
+      choices: ['Engineer', 'Intern', 'I don\'t want to add anymore members.']
     }
   ]).then(function (response) {
     if (response.addEmployee === 'Engineer') {
@@ -73,7 +73,7 @@ function addManager() {
           return 'Please enter a number.';
         } else if (teamMembers.some(teamMember => (teamMember.id === val))) {
           return 'This ID has already been used, please enter a new ID.'
-        }
+        } else
         return true;
       }
     },
@@ -90,14 +90,14 @@ function addManager() {
       validate: function(val) {
         if (isNaN(val)) {
           return 'Please enter a number.';
-        }
+        } else
         return true;
       }
     },
   ])
 
   .then(function (response) {
-    const manager = new manager(response.managerName, response.managerId, response.managerEmail, response.officeNumber);
+    const manager = new Manager(response.managerName, response.managerId, response.managerEmail, response.officeNumber);
     teamMembers.push(manager);
   });
 }
@@ -142,7 +142,7 @@ function addEngineer() {
   ])
 
   .then(function (response) {
-    const engineer = new engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
+    const engineer = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
     teamMembers.push(engineer);
   });
 }
@@ -185,7 +185,7 @@ function addIntern() {
   ])
 
   .then(function (response) {
-    const intern = new intern(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
+    const intern = new Intern(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
     teamMembers.push(intern);
   });
 }
